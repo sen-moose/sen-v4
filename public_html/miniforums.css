@@ -1,0 +1,177 @@
+/* Yay, Pie_Sniper fixified the CSS, still 162 lines */
+body {
+  background-color: black;
+  color: #FFF;
+  font: normal 12px Tahoma, sans-serif;
+}
+div.Login input {
+  border: 1px solid #999;
+  margin: 1px;
+  color: #FFF;
+}
+div.Login input.Text {
+  background-color: #005C80;
+  height: 14px;
+  width: 119px;
+  font: normal 8pt Tahoma, sans-serif;
+}
+input.Button {
+  background-color: #00405C;
+  color: white;
+  border: 1px solid #999; 
+  padding: 2px;
+  width: 122px;
+  font: bold 9px Tahoma, sans-serif;
+}
+a:link, a:visited {
+  text-decoration: underline;
+  color: #FFF;
+}
+a:hover {
+  text-decoration: none;
+  color: #CCC;
+}
+div.Main {
+  background-color: #005C80;
+  border: 1px solid #FFF;
+  margin: 0px auto 0px auto;
+  width: 90%;
+}
+div.Titlebar {
+  background-color: #00405C;
+  border-bottom: 1px solid #FFF;
+  text-align: center;
+  padding: 10px;
+  height: 42px;
+}
+div.Login {
+  background-color: #044;
+  padding-left: 1px;
+  border-left: 1px solid #FFF;
+  text-align: right;
+  margin: -10px;
+  height: 62px;
+  width: 180px;
+  float: right;
+  font: bold 8px Tahoma, sans-serif;
+}
+div.Section {
+  border-left: 1px solid #FFF;
+  border-top: 1px solid #FFF;
+  margin: 10px;
+}
+div.Forum1, div.Forum2 {
+  background-color: #00405C;
+  border-bottom: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+  padding: 10px;
+}
+div.Forum2 {
+  background-color: #044;
+}
+div.LastPost1, div.LastPost2, div.LastPost3, div.LastPost4 {
+  background-color: #044;
+  border-left: 1px solid #FFF;
+  overflow: hidden;
+  display: block;
+  padding: 7px;
+  margin: -10px;
+  float: right;
+  color: #CCC;
+  width: 130px;
+  font: bold 10px Tahoma, sans-serif;
+  height: 100%;
+}
+div.LastPost2 {
+  background-color: #00405C;
+}
+div.LastPost3, div.LastPost4 {
+  /*padding: 8px 8px 11px 8px;*/
+  margin: -8px -8px 0 -8px;
+  /*height: 26px;*/
+}
+div.LastPost4 {
+  background-color: #00405C;
+}
+div.Footer {
+  text-align: center;
+  border-top: 1px solid #FFF;
+  color: #FFF;
+  font: italic 10px Tahoma, sans-serif;
+}
+div.SectionHeader {
+  border-bottom: 1px solid #FFF;
+  padding: 4px;
+  color: #FFF;
+  font: normal 10px Tahoma, sans-serif;
+}
+.lph {
+  border-right: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  display: inline;
+  padding: 4px;
+  margin: -4px;
+  float: right;
+  width: 138px;
+}
+h1
+{
+  display: inline;
+  color: #005CC0;
+  font: bold 26pt Tahoma, sans-serif;
+}
+h2
+{
+  display: inline;
+  color: #FFF;
+  font: bold 12pt Tahoma, sans-serif;
+}
+p
+{
+  display: inline;
+}
+a.TopicTitle:link, a.TopicTitle:visited, a.TopicTitle:hover {
+  text-decoration: underline;
+  line-height: 12px;
+  color: #FFF;
+  font: normal 12px Tahoma, sans-serif;
+}
+a.TopicTitle:visited {
+  color: #CCC;
+}
+a.TopicTitle:hover {
+  text-decoration: none;
+  color: #DDD;
+}
+p.ForumDescription
+{
+  color: #FFF;
+  font: 8pt Tahoma, sans-serif;
+}
+a.ForumTitle:link, a.ForumTitle:visited, a.ForumTitle:hover
+{
+  text-decoration: none;
+  display: block;
+  color: #CCC;
+  font: bold 10pt Tahoma, sans-serif;
+}
+a.ForumTitle:hover
+{
+  color: #FFF;
+}
+#newpost {
+  height: 20em;
+  width: 100%;
+  background-color: #004C70;
+  color: white;
+  border: 1px solid #999;
+  font-family: Tahoma, Arial, sans;
+  font-size: 12px;
+}
+.codebox {
+  font-family: monospace;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  overflow-x: auto;
+}  
