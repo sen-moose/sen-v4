@@ -43,19 +43,19 @@
         $lim_low = 0;
     }
     $lim_high = $lim_low + 50;
-
     $where = "";
     $search = "";
     if (isset($_GET['c'])) {
-        if (!ctype_alnum($_GET['c'])) { }
-        else {
-            $where = "WHERE name LIKE ?";
+        if (!ctype_alnum($_GET['c'])) {
+        } else {
+            $where = "";
             $search = "%" . $_GET['c'] . "%";
         }
+    } else {
+        $search = "%%";
     }
-
-    $a = $pdo->prepare("SELECT id, name, joined, posts, last_activity FROM ibf_members {$where} LIMIT {$lim_low}, {$lim_high} ");
-    $a->execute([$search]);
+    $a = $pdo->prepare("SELECT id, name, joined, posts, last_activity FROM ibf_members WHERE name LIKE ? LIMIT ?, ?");
+    $a->execute([$search, $lim_low, $lim_high]);
 
     $flipper = 0;
     while ($row = $a->fetch()) {
