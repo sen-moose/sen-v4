@@ -47,12 +47,16 @@
         }
         echo '</div>';
     } else if (isset($_GET['sf'])) {
-        $a = $pdo->query("select name from ibf_forums where id = ".(int)$_GET['sf']);
+        $forum_id = (int)$_GET['sf'];
+        $a = $pdo->prepare("select name from ibf_forums where id = ?");
+        $a->execute([$forum_id]);
         $forumtitle = $a->fetch();
         $forumtitle = $forumtitle['name'];
-        echo '<a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a style="font: bold 12px Tahoma" href="?sf=<'.$_GET['sf'].'">'.$forumtitle.'</a>
+        echo '<a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a style="font: bold 12px Tahoma" href="?sf=<'.$forum_id.'">'.$forumtitle.'</a>
         <div class="Section"><div class="SectionHeader"><span class="lph">Last Post</span>Topic Title</div>';
-        @$a = $pdo->query("select tid, title, description, starter_name, last_poster_name, last_post from ibf_topics WHERE forum_id = ".(int)$_GET['sf']." ORDER BY pinned DESC, last_post DESC LIMIT " . (($_GET['p']*25) ? $_GET['p']*25 . ", " : '') . "25");
+        $a = $pdo->prepare("select tid, title, description, starter_name, last_poster_name, last_post from ibf_topics WHERE forum_id = ".$forum_id." ORDER BY pinned DESC, last_post DESC LIMIT ?, 25");
+        $post_quantity = ($p*25) ? $p*25 : '';
+        $a->execute([$post_quantity]);
         $flipper = 0;
         while ($row = $a->fetch()) {
         echo '<div class="Forum'.(($flipper ^= 1)+1).'" style="line-height:12px;padding: 8px;">'
@@ -61,14 +65,18 @@
         <p style='font: normal 8px Tahoma;'>".$row['starter_name']."</p></div>";
         }
         echo "</div>";
-        echo "<a href='?sf=". $_GET['sf'] ."&p=" . ($p+1) . "'>Next Page (" . ($p+1) . ")</a>";
+        echo "<a href='?sf=" . $forum_id . "&p=" . ($p+1) . "'>Next Page (" . ($p+1) . ")</a>";
     } else if (isset($_GET['st'])) {
-        $a = $pdo->query("select t.title, f.name, t.forum_id from ibf_topics as t left join ibf_forums as f on t.forum_id = f.id where tid = ".(int)$_GET['st']);
+        $topic_id = (int)$_GET['st'];
+        $a = $pdo->prepare("select t.title, f.name, t.forum_id from ibf_topics as t left join ibf_forums as f on t.forum_id = f.id where tid = ?");
+        $a->execute([$topic_id]);
         $t = $a->fetch();
         $topictitle = $t['title'];
         $forumname = $t['name'];
         $forumid = $t['forum_id'];
-        $a = $pdo->query("select author_name, post_date, post from ibf_posts where topic_id = ".(int)$_GET['st']." ORDER BY post_date LIMIT " . (($p) ? $p*25 . ", " : '') . "25");
+        $a = $pdo->prepare("select author_name, post_date, post from ibf_posts where topic_id = ? ORDER BY post_date LIMIT ?, 25");
+        $post_quantity = ($p*25) ? $p*25 : '';
+        $a->execute([$topic_id, $post_quantity]);
         ?><a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a href="?st=<?=$forumid?>"><?=$forumname?></a> -> <a style="font: bold 12px Tahoma" href='?st=<?=$_GET['st']?>'><?=$topictitle?></a>
         <div class="Section">
         <?php

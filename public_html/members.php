@@ -44,16 +44,19 @@
     }
     $lim_high = $lim_low + 50;
 
+    $where = "";
+    $search = "";
     if (isset($_GET['c'])) {
         if (!ctype_alnum($_GET['c'])) { }
         else {
-            $where = "WHERE name LIKE '%{$_GET['c']}%'";
+            $where = "WHERE name LIKE ?";
+            $search = "%" . $_GET['c'] . "%";
         }
     }
-    else {
-        $where = "";
-    }
-    $a = $pdo->query("SELECT id, name, joined, posts, last_activity FROM ibf_members {$where} LIMIT {$lim_low}, {$lim_high} ");
+
+    $a = $pdo->prepare("SELECT id, name, joined, posts, last_activity FROM ibf_members {$where} LIMIT {$lim_low}, {$lim_high} ");
+    $a->execute([$search]);
+
     $flipper = 0;
     while ($row = $a->fetch()) {
         echo '<div class="Forum'.(($flipper ^= 1)+1).'">
