@@ -52,7 +52,7 @@
         $a->execute([$forum_id]);
         $forumtitle = $a->fetch();
         $forumtitle = $forumtitle['name'];
-        echo '<a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a style="font: bold 12px Tahoma" href="?sf=<'.$forum_id.'">'.$forumtitle.'</a>
+        echo '<a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a style="font: bold 12px Tahoma" href="?sf='.$forum_id.'">'.$forumtitle.'</a>
         <div class="Section"><div class="SectionHeader"><span class="lph">Last Post</span>Topic Title</div>';
         $a = $pdo->prepare("select tid, title, description, starter_name, last_poster_name, last_post from ibf_topics WHERE forum_id = ".$forum_id." ORDER BY pinned DESC, last_post DESC LIMIT ?, 25");
         $post_quantity = ($p*25) ? $p*25 : '';
@@ -77,7 +77,7 @@
         $a = $pdo->prepare("select author_name, post_date, post from ibf_posts where topic_id = ? ORDER BY post_date LIMIT ?, 25");
         $post_quantity = ($p*25) ? $p*25 : '';
         $a->execute([$topic_id, $post_quantity]);
-        ?><a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a href="?st=<?=$forumid?>"><?=$forumname?></a> -> <a style="font: bold 12px Tahoma" href='?st=<?=$_GET['st']?>'><?=$topictitle?></a>
+        ?><a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a href="?sf=<?=$forumid?>"><?=$forumname?></a> -> <a style="font: bold 12px Tahoma" href='?st=<?=$_GET['st']?>'><?=$topictitle?></a>
         <div class="Section">
         <?php
         $flipper = 0;
