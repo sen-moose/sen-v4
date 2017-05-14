@@ -77,7 +77,7 @@
         $a = $pdo->prepare("select author_name, post_date, post from ibf_posts where topic_id = ? ORDER BY post_date LIMIT ?, 25");
         $post_quantity = ($p*25) ? $p*25 : '';
         $a->execute([$topic_id, $post_quantity]);
-        ?><a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a href="?sf=<?=$forumid?>"><?=$forumname?></a> -> <a style="font: bold 12px Tahoma" href='?st=<?=$_GET['st']?>'><?=$topictitle?></a>
+        ?><a style="margin:2px;font: bold 12px Tahoma" href="?idx">Staredit Network</a> -> <a href="?sf=<?=$forumid?>"><?=$forumname?></a> -> <a style="font: bold 12px Tahoma" href='?st=<?=$topic_id?>'><?=$topictitle?></a>
         <div class="Section">
         <?php
         $flipper = 0;
@@ -89,7 +89,7 @@
             '<div style="padding-top: 10px;min-height: 25px;">'.$row['post'] ."</div></div>";
         }
         echo "</div>";
-        echo "<a href='?st=". $_GET['st'] ."&p=" . ($p+1) . "'>Next Page (" . ($p+1) . ")</a>";
+        echo "<a href='?st=". $topic_id ."&p=" . ($p+1) . "'>Next Page (" . ($p+1) . ")</a>";
         $pdo = null;
     }
 ?>
